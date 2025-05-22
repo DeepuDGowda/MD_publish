@@ -1,0 +1,472 @@
+openapi: 3.0.3
+info:
+  title: LAD SIT
+  version: 1.0.0
+  license:
+    name: the license to update the LAD API
+    url: https://apigw.test.integreat.perfios.com/adminportal/api/v1/borrower/fetchAllEligibleLoanPrograms
+  description: |
+    This document contains the backend API details which are being used in Loan Against Deposit (LAD) Journey.  
+    The purpose of the document is to guide the development team implement Finance and Asset Evaluator APIs, its request, response structure and error codes
+servers:
+  - url: https://apigw.test.integreat.perfios.com/adminportal/api/v1/borrower/fetchAllEligibleLoanPrograms
+paths:
+  /lad/fetchAccountAndCustomerInfo:
+    post:
+      summary: fetch Account an dCustomer Information
+      operationId: FetchAccountCustomerInformation
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: CIF
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: product
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cif:
+                  type: number
+                  example: 108861839
+                productsUpdated:
+                  type: string
+                  example: LAD
+      responses:
+        "400":
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    accountInfo:
+                      type: object
+                      properties:
+                        schemeCode:
+                          type: string
+                          example: SBGEN
+                        schemeType:
+                          type: string
+                          example: SBA
+                        description:
+                          type: string
+                          example: Saving Bank Account
+                        accountNumber:
+                          type: number
+                          example: 397202010003612
+        "200":
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    accountInfo:
+                      type: object
+                      properties:
+                        schemeCode:
+                          type: string
+                          example: SBGEN
+                        schemeType:
+                          type: string
+                          example: SBA
+                        description:
+                          type: string
+                          example: Saving Bank Account
+                        accountNumber:
+                          type: number
+                          example: 397202010003612
+                        maskedAccountNumber:
+                          type: number
+                          example: 3612
+                        selected:
+                          type: boolean
+                          example: flase
+                    customerInfo:
+                      type: object
+                      properties:
+                        occupation:
+                          type: string
+                          example: TRADER
+                        mobileNumber:
+                          type: number
+                          example: 9999999999
+                        mother_name:
+                          type: string
+                          example: N
+                        commState:
+                          type: string
+                          example: PUNJAB
+                        brcode:
+                          type: number
+                          example: 559105
+                        physical_state:
+                          type: string
+                          example: ""
+                        residential_STATUS_CODE:
+                          type: number
+                          example: 1
+                        edu_Qualification:
+                          type: string
+                          example: ""
+                        permState:
+                          type: string
+                          example: PUNJAB
+                        father_husband_name:
+                          type: string
+                          example: N
+                        commCity:
+                          type: string
+                          example: AMRITSAR
+                        nre:
+                          type: string
+                          example: N
+                        addressType:
+                          type: string
+                          example: ""
+                        caste:
+                          type: string
+                          example: GENERAL
+                        src_OF_INCOME:
+                          type: string
+                          example: ""
+                        kyc_dt:
+                          type: string
+                          example: 01-10-2024
+                          format: date
+                        relationshipstartdate:
+                          type: string
+                          example: 30-05-2004
+                          format: date
+                        dob:
+                          type: string
+                          description: date of birth
+                          example: 1991-01-20 00:00:00
+                          format: date
+                        customer_Type:
+                          type: string
+                          example: Retail
+                        permCountry:
+                          type: string
+                          example: INDIA
+                        permPinCode:
+                          type: number
+                          example: 143006
+                        permAddr1:
+                          type: string
+                          example: 122  GALI NO 18
+                        permDistrict:
+                          type: string
+                          format: nullable
+                        kyc_reviewDt:
+                          type: string
+                          format: date
+                          example: 01-10-2034
+                        permAddr2:
+                          type: string
+                          example: NEW PAWAN NAGAR
+                        permAddr3:
+                          type: string
+                          example: M
+                        gender:
+                          type: string
+                          example: HARISH KUMAR GROVER
+                        accountName:
+                          type: string
+                          example:
+                        panGirNum:
+                          type: string
+                          example: ""
+                        permEmailid:
+                          type: string
+                          example: ""
+                        seniorCitizen:
+                          type: string
+                          example: N
+                        commAddr3:
+                          type: string
+                          example: ""
+                        countryCode:
+                          type: number
+                          example: +91
+                        commAddr2:
+                          type: string
+                          example: NEW PAWAN NAGAR
+                        commAddr1:
+                          type: string
+                          example: 122  GALI NO 18
+                        customer_TITLE:
+                          type: string
+                          example: ""
+                        nationalIdNum:
+                          type: string
+                          example: ""
+                        commDistrict:
+                          type: string
+                          example: AMRITSAR
+                        marital_Status:
+                          type: string
+                          example: OTHER
+                        emailid:
+                          type: string
+                          example: RASHMIKA.GV@PERFIOS.COM
+                        nomineeName:
+                          type: string
+                          example: dfcc
+                        commPinCode:
+                          type: number
+                          example: 143006
+                        riskRating:
+                          type: string
+                          example: LOW
+                        religion:
+                          type: string
+                          example: HINDU
+                        mode_of_operation:
+                          type: number
+                          example: 001
+                        custConst:
+                          type: string
+                          example: Individual
+                        commCountry:
+                          type: string
+                          example: INDIA
+                        isUBOIStaff:
+                          type: string
+                          example: N
+                        permCity:
+                          type: string
+                          example: AMRITSAR
+  /lad/eligibleTD:
+    get:
+      summary: eligibleTD
+      operationId: FetchAccountCustomer
+      security:
+        - BasicAuth: []
+      parameters:
+        - name: CUSTOMERID
+          in: query
+          schema:
+            type: string
+            example: CUSTOMER ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: number
+                  example: 2015222258
+                constitution:
+                  type: string
+                  example: INDIVIDUAL
+      responses:
+        "200":
+          description: Eligiblility Details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    IDdetails:
+                      type: object
+                      properties:
+                        # IDDetails:
+                        schemeCode:
+                          type: number
+                          example: TD004
+                        remainingTenureInDays:
+                          type: number
+                          example: 238
+                        statusFreeze:
+                          type: string
+                          example: ""
+                        currentAmount:
+                          type: number
+                          example: 7000
+                        autoRenewalFlag:
+                          type: string
+                          example: N
+                        roi:
+                          type: number
+                          example: 6.35
+                        tdDescription:
+                          type: string
+                          example: Recurring Deposit
+                        ODRoi:
+                          type: number
+                          example: 8.35
+                        depositAccountNumber:
+                          type: number
+                          example: 490103040000637
+                        ODLTVAmount:
+                          type: number
+                          example: 6300
+                        createdFrom:
+                          type: string
+                          example: ""
+                        maturityDate:
+                          type: string
+                          example: 2025-10-02
+                          format: date
+                        schemeCategory:
+                          type: string
+                          example: RDSC
+                        statusLien:
+                          type: string
+                          example: ""
+                        initialOpeningAmount:
+                          type: number
+                          example: 7000
+                        startDate:
+                          type: string
+                          example: 2025-01-02
+                          format: date
+                      required: [remainingTenureInDays, ODRoi]
+                    schema:
+                      type: object
+                      properties:
+                        schemeCode:
+                          type: string
+                          example: TD004
+                        remainingTenureInDays:
+                          type: number
+                          example: 203
+                        statusFreeze:
+                          type: string
+                          example: N
+                        currentAmount:
+                          type: number
+                          example: 3300
+                        autoRenewalFlag:
+                          type: string
+                          example: N
+                        roi:
+                          type: number
+                          example: 6.35
+                        tdDescription:
+                          type: string
+                          example: Recurring Deposit
+                        ODRoi:
+                          type: number
+                          example: 8.35
+                        depositAccountNumber:
+                          type: string
+                          example: 490103040000630
+                        ODLTVAmount:
+                          type: string
+                          example: 2970
+                        createdFrom:
+                          type: string
+                          example: ""
+                        maturityDate:
+                          type: string
+                          example: 2025-08-28
+                          format: date
+                        schemeCategory:
+                          type: string
+                          example: RDSC
+                        statusLien:
+                          type: string
+                          example: ""
+                        initialOpeningAmount:
+                          type: number
+                          example: 3300
+                        startDate:
+                          type: string
+                          example: 2024-11-28
+                          format: date
+                    schemaCode:
+                      type: object
+                      properties:
+                        schemeCode:
+                          type: string
+                          example: TD004
+                        remainingTenureInDays:
+                          type: number
+                          example: 682
+                        statusFreeze:
+                          type: string
+                          example: N
+                        currentAmount:
+                          type: number
+                          example: 1300
+                        autoRenewalFlag:
+                          type: string
+                          example: N
+                        roi:
+                          type: number
+                          example: 6.6
+                        tdDescription:
+                          type: string
+                          example: Recurring Deposit
+                        ODRoi:
+                          type: number
+                          example: 8.6
+                        depositAccountNumber:
+                          type: string
+                          example: 490103040000634
+                        ODLTVAmount:
+                          type: string
+                          example: 11700
+                        createdFrom:
+                          type: string
+                          example: ""
+                        maturityDate:
+                          type: string
+                          example: 2026-12-20
+                          format: date
+                        schemeCategory:
+                          type: string
+                          example: RDSC
+                        statusLien:
+                          type: string
+                          example: ""
+                        initialOpeningAmount:
+                          type: number
+                          example: 13000
+                        startDate:
+                          type: string
+                          example: 2024-12-20
+                          format: date
+        "400":
+          description: SUCCESS
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    accountInfo:
+                      type: object
+                      properties:
+                        schemeCode:
+                          type: string
+                          example: SBGEN
+                        schemeType:
+                          type: string
+                          example: SBA
+                        description:
+                          type: string
+                          example: Saving Bank Account
+                        accountNumber:
+                          type: number
+                          example: 397202010003612
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic

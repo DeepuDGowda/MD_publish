@@ -60,7 +60,7 @@ paths:
                           example: SBA
                         description:
                           type: string
-                          example: Saving Bank Account
+                          example: Saving Bank Accounts
                         accountNumber:
                           type: number
                           example: 397202010003612
